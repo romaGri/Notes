@@ -1,8 +1,9 @@
 ﻿using System;
 using System.IO;
 using Xamarin.Forms;
+using Notes.Views;
 
-namespace Notes
+namespace Notes.Views
 {
     public partial class MainPage : ContentPage
     {

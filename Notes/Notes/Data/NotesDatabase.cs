@@ -21,27 +21,46 @@ namespace Notes.Data
         {
             return _database.Table<Note>().ToListAsync();
         }
+       
 
         public Task<Note> GetNoteAsync(int id)
         {
             return _database.Table<Note>().Where(n => n.ID == id).FirstOrDefaultAsync();
         }
-
-        public Task<int> SaveNote(Note note)
+        public Task<List<Remainder>> GetRemaindersAsync()
         {
-            if (note.ID != 0)
+            return _database.Table<Remainder>().ToListAsync();
+        }
+        public Task<Remainder> GetRemainderAsync(int id)
+        {
+            return _database.Table<Remainder>().Where(n => n.ID == id).FirstOrDefaultAsync();
+        }
+
+        public Task<int> SaveItem(object item)
+        {
+            var itemExist = item.GetType();
+            if (itemExist == Remainder )
             {
-                return _database.UpdateAsync(note);
+                return _database.UpdateAsync(item);
             }
             else
             {
-                return _database.InsertAsync(note);
+                return _database.InsertAsync(item);
             }
         }
 
-        public Task<int> DeleteAsync(Note note)
+            public Task<int> DeleteAsync(object item)
         {
-            return _database.DeleteAsync(note);
+            return _database.DeleteAsync(item);
+        }
+
+        public bool Chek(object item)
+        {
+            var itemExist = item.GetType();
+            if (itemExist == Note || itemExist == Remainder)
+            {
+                return true;
+            }
         }
     }
 }

@@ -16,10 +16,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="NoteEntryPage.xaml">
+    <Compile Update="Views\ReminderViews\ReminderPage.xaml.cs">
+      <DependentUpon>ReminderPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\NotesViews\NoteEntryPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="NotePage.xaml">
+    <EmbeddedResource Update="Views\NotesViews\NotePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ReminderViews\ReminderPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ReminderViews\ReminderEntryPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

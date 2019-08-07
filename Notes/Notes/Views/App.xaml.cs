@@ -1,10 +1,11 @@
 ﻿using System;
 using System.IO;
 using Notes.Data;
+using Notes.Views.NotesViews;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
-namespace Notes
+
+namespace Notes.Views
 {
     public partial class App : Application
     {
