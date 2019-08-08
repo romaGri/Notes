@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Notes.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,21 @@ namespace Notes.Views.ReminderViews
             datePicker.DateSelected += datePicker_DateSelected;
             StackLayout stack = new StackLayout { Children = { label, datePicker } };
             this.Content = stack;
+        }
+        async void OnSaveClicked(object sender, EventArgs e)
+        {
+            var note = (Reminder)BindingContext;
+            note.GetDate = DateTime.UtcNow;
+            await App.Database.SaveItem(note);
+            await Navigation.PopAsync();
+        }
+
+        async void OnDeleteClicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Подтвердить действие", "Вы хотите удалить элемент?", "Да", "Нет");
+            var note = (Reminder)BindingContext;
+            await App.Database.DeleteAsync(note);
+            await Navigation.PopAsync();
         }
 
         private void datePicker_DateSelected(object sender, DateChangedEventArgs e)

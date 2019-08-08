@@ -4,12 +4,27 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Notes.Views.ReminderViews.RemainderPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Reminders will be here soon"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="Notes.Views.ReminderViews.RemainderPage"
+             Title="Reminders">
+    <ContentPage.Resources >
+        <Style TargetType="{x:Type ListView}">
+            <Setter Property="BackgroundColor"
+                    Value="{StaticResource AppBackgroundColor}"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add new"
+                     Clicked="OnReminderAddedClicked"/>
+        
+    </ContentPage.ToolbarItems>
+    <ListView x:Name="ListView"
+                Margin="20"
+              ItemSelected="OnListViewItemSelected">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <TextCell Text="{Binding Text}"
+                          Detail="{Binding Date}"/>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>

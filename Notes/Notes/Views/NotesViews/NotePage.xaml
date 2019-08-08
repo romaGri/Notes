@@ -12,8 +12,8 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add new"
                      Clicked="OnNoteAddedClicked"/>
-        <ToolbarItem Text="Remainder"
-                     Clicked="OnRemainderClicked"/>
+        <ToolbarItem Text="Add new"
+                     Clicked="OnReminderAddedClicked"/>
     </ContentPage.ToolbarItems>
     <ListView x:Name="ListView"
                 Margin="20"

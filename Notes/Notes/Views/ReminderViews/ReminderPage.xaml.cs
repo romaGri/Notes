@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Notes.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,31 @@ namespace Notes.Views.ReminderViews
         public RemainderPage()
         {
             InitializeComponent();
+        }
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+         //   ListView.ItemsSource = await App.Database.GetReminderAsync();
+        }
+
+        async void OnReminderAddedClicked(object sennder, EventArgs e)
+        {
+            await Navigation.PushAsync(new ReminderEntryPage
+            {
+                BindingContext = new Reminder()
+            });
+        }
+    
+      
+        async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem != null)
+            {
+                await Navigation.PushAsync(new ReminderEntryPage
+                {
+                    BindingContext = e.SelectedItem as Reminder
+                });
+            }
         }
     }
 }

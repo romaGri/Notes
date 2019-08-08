@@ -10,7 +10,7 @@ namespace Notes.Views
     public partial class App : Application
     {
         static NotesDatabase database;
-
+        
         public static NotesDatabase Database
         {
             get

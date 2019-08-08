@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SQLite;
 using Notes.Models;
+using System.Reflection;
 
 namespace Notes.Data
 {
@@ -17,29 +18,29 @@ namespace Notes.Data
             _database.CreateTableAsync<Note>().Wait();
         }
 
-        public Task<List<Note>> GetNotesAsync()
+        public Task<List<Note>> GetItemsAsync()
         {
             return _database.Table<Note>().ToListAsync();
         }
-       
 
-        public Task<Note> GetNoteAsync(int id)
+
+        public Task<Note> GetByIdAsync(int id)
         {
             return _database.Table<Note>().Where(n => n.ID == id).FirstOrDefaultAsync();
         }
-        public Task<List<Remainder>> GetRemaindersAsync()
-        {
-            return _database.Table<Remainder>().ToListAsync();
-        }
-        public Task<Remainder> GetRemainderAsync(int id)
-        {
-            return _database.Table<Remainder>().Where(n => n.ID == id).FirstOrDefaultAsync();
-        }
 
+        public Task<List<Reminder>> GetRemaindersAsync()
+        {
+            return _database.Table<Reminder>().ToListAsync();
+        }
+        public Task<Reminder> GetRemainderAsync(int id)
+        {
+            return _database.Table<Reminder>().Where(n => n.ID == id).FirstOrDefaultAsync();
+        }
         public Task<int> SaveItem(object item)
         {
-            var itemExist = item.GetType();
-            if (itemExist == Remainder )
+            var currentItem = ChekType(item);
+            if (currentItem !=0 )
             {
                 return _database.UpdateAsync(item);
             }
@@ -49,18 +50,28 @@ namespace Notes.Data
             }
         }
 
-            public Task<int> DeleteAsync(object item)
+        public Task<int> DeleteAsync(object item)
         {
             return _database.DeleteAsync(item);
         }
 
-        public bool Chek(object item)
+        public int ChekType(object item)
         {
-            var itemExist = item.GetType();
-            if (itemExist == Note || itemExist == Remainder)
+            Reminder r = new Reminder();
+            Note n = new Note();
+
+            var currentItem = item.GetType();
+            int id = (int)currentItem.GetProperty("ID").GetValue(item, null);
+
+            if (currentItem == typeof(Note))
             {
-                return true;
+                return n.ID = id ;
             }
+            if (currentItem == typeof(Reminder))
+            {
+                return r.ID = id;
+            }
+            return 0;
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Notes.Views.NotesViews
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            ListView.ItemsSource = await App.Database.GetNotesAsync();
+            ListView.ItemsSource = await App.Database.GetItemsAsync();
         }
 
         async void OnNoteAddedClicked(object sender, EventArgs e)
@@ -28,12 +28,11 @@ namespace Notes.Views.NotesViews
                 BindingContext = new Note()
             });
         }
-
-        async void OnRemainderClicked(object sender, EventArgs e)
+        async void OnReminderAddedClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new RemainderPage
+            await Navigation.PushAsync(new ReminderEntryPage
             {
-                BindingContext = new Remainder()
+                BindingContext = new Reminder()
             });
         }
 
