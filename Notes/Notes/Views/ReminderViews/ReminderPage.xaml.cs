@@ -17,7 +17,7 @@ namespace Notes.Views.ReminderViews
         {
             InitializeComponent();
         }
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
          //   ListView.ItemsSource = await App.Database.GetReminderAsync();
