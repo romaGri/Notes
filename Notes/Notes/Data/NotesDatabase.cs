@@ -16,6 +16,7 @@ namespace Notes.Data
         {
             _database = new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<Note>().Wait();
+            _database.CreateTableAsync<Reminder>().Wait();
         }
 
         public Task<List<Note>> GetItemsAsync()

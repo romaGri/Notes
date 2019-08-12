@@ -14,36 +14,36 @@ namespace Notes.Views.ReminderViews
     public partial class ReminderEntryPage : ContentPage
     {
         Label label;
-        DatePicker datePicker;
-        TimePicker timePicker;
+        //DatePicker datePicker;
+        //TimePicker timePicker;
         public ReminderEntryPage()
         {
             InitializeComponent();
 
-            label = new Label { Text = "choose date" };
-            datePicker = new DatePicker
-            {
-                Format = "D",
-                MaximumDate = DateTime.Now.AddMonths(24),
-                MinimumDate = DateTime.Now
-            };
-            datePicker.DateSelected += datePicker_DateSelected;
-            StackLayout stack = new StackLayout { Children = { label, datePicker } };
-            this.Content = stack;
+            //label = new Label { Text = "choose date" };
+            //datePicker = new DatePicker
+            //{
+            //    Format = "D",
+            //    MaximumDate = DateTime.Now.AddMonths(24),
+            //    MinimumDate = DateTime.Now
+            //};
+            //datePicker.DateSelected += datePicker_DateSelected;
+            //StackLayout stack = new StackLayout { Children = { label, datePicker } };
+            //this.Content = stack;
         }
         async void OnSaveClicked(object sender, EventArgs e)
         {
-            var note = (Reminder)BindingContext;
-            note.GetDate = DateTime.UtcNow;
-            await App.Database.SaveItem(note);
+            var reminder = (Reminder)BindingContext;
+            reminder.GetDate = DateTime.UtcNow;
+            await App.Database.SaveItem(reminder);
             await Navigation.PopAsync();
         }
 
         async void OnDeleteClicked(object sender, EventArgs e)
         {
             await DisplayAlert("Подтвердить действие", "Вы хотите удалить элемент?", "Да", "Нет");
-            var note = (Reminder)BindingContext;
-            await App.Database.DeleteAsync(note);
+            var reminder = (Reminder)BindingContext;
+            await App.Database.DeleteAsync(reminder);
             await Navigation.PopAsync();
         }
 

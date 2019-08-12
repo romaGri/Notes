@@ -12,7 +12,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add new"
                      Clicked="OnNoteAddedClicked"/>
-        <ToolbarItem Text="Add new"
+        <ToolbarItem Text="Add new R"
                      Clicked="OnReminderAddedClicked"/>
     </ContentPage.ToolbarItems>
     <ListView x:Name="ListView"

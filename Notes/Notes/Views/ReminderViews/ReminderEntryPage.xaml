@@ -6,15 +6,19 @@
     
     <ContentPage.Content>
         <StackLayout Margin="20">
-            <Editor Placeholder="Enter your note"
+
+
+            <Editor Placeholder="What to remind you?"
                 Text="{Binding Text}"
                 HeightRequest="100"/>
+            <DatePicker Date="{Binding Date}"/>
+            <TimePicker Time="{Binding Time}"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Text="Save"
+                <Button  Text="Save"
                     Clicked="OnSaveClicked" />
                 <Button Grid.Column="1"
                     Text="Delete"
